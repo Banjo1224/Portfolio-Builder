@@ -1,42 +1,73 @@
 import React from 'react';
 import ProjectList from './ProjectList.js';
-import ImageUploader from 'react-images-upload';
+import FileUpload from './projectUpload.js'
 
 class Projects extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      projects: 0,
-      pictures: []
+      picture: null,
+      projects: [],
+      name: null,
+      link: null,
+
     }
+    this.setName = this.setName.bind(this);
+    this.setLink = this.setLink.bind(this);
+    this.setImage = this.setImage.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onDrop(pictureFiles, pictureDataURLs) {
+  setName(e) {
+    e.preventDefault();
+    console.log(e.target.value);
     this.setState({
-      pictures: this.state.pictures.concat(pictureFiles),
-      projects: this.state.projects + 1
-    }, () => console.log(this.state));
-
+      name: e.target.value
+    })
   }
+
+  setLink(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({
+      link: e.target.value
+    })
+  }
+
+  setImage(e) {
+    e.preventDefault()
+    console.log(e.target);
+    this.setState({
+      picture: e.target.value
+    })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('submit');
+    var newProj = {'name': this.state.name, 'link': this.state.link, 'picture': this.state.picture}
+    this.setState({
+      projects: this.state.projects.concat(newProj)
+    })
+  }
+
+  // onDrop(pictureFiles, pictureDataURLs) {
+  //   console.log(arguments)
+  //   this.setState({
+  //     picture: URL.createObjectURL(pictureFiles),
+  //   }, () => console.log(this.state));
+
+  // }
 
   render() {
     return (
       <div id='projects'>
         <h2>Projects</h2>
-        <label>Project Name: </label><input placeholder='Name'></input><br />
-        <label>Project Link: </label><input placeholder='Github URL'></input><br />
-        <ImageUploader
-          withIcon={true}
-          buttonText="Choose image"
-          onChange={this.onDrop.bind(this)}
-          imgExtension={[".jpg", ".jpeg", ".gif", ".png", ".gif"]}
-          maxFileSize={5242880}
-          singleImage={true}
-          withPreview={true}
-          id="uploader"
-        />
-        <button onClick={e => e.preventDefault()}>Add Project to List</button>
-        {this.state.pictures.length ? <ProjectList pictures={this.state.pictures} /> : null}
+        <label>Project Name: </label><input placeholder='Name' onChange={e => this.setName(e)}/><br />
+        <label>Project Link: </label><input placeholder='Github URL' onChange={e => this.setLink(e)}/><br />
+        <label>Project Image: </label><FileUpload project_id={this.state.projects.length + 1}/>
+        <button onClick={e => this.handleSubmit(e)}>Add Project to List</button>
+        {this.state.projects.length ? <ProjectList projects={this.state.projects} /> : null}
         <hr />
       </div>
     )

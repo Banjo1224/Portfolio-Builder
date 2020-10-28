@@ -1,12 +1,13 @@
-const ProjectList = ({ pictures }) => {
-  for (var i = 0; i < pictures.length; i++) {
-    return (
-      <div id='project'>
+const ProjectList = ({ projects }) => {
 
+  return projects.map((project, i) => {
+    return (
+      <div key={i} id='project'>
+        <img src={project.picture} alt=""></img>
+        <a href={project.link}>{project.name}</a>
       </div>
     )
-
-  }
+  })
 }
 
 export default ProjectList;

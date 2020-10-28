@@ -1,5 +1,5 @@
 // import { Grid } from '@material-ui/core';
-import ImageUploader from 'react-images-upload';
+import FileUpload from './profileUpload.js';
 
 const Profile = (props) => {
   /**
@@ -27,15 +27,7 @@ const Profile = (props) => {
         ><input placeholder='Link to Github' onChange={e => { console.log(e.target.value) }}></input><br />
         <label>Resume: </label>
         <input placeholder='Link to Google Doc Resume' onChange={e => { console.log(e.target.value) }}></input><br />
-        <ImageUploader
-          withIcon={true}
-          buttonText="Choose image"
-          imgExtension={[".jpg", ".jpeg", ".gif", ".png", ".gif"]}
-          maxFileSize={5242880}
-          singleImage={true}
-          withPreview={true}
-          id="uploader"
-        />
+        <FileUpload />
       </form>
       <hr></hr>
     </div>
