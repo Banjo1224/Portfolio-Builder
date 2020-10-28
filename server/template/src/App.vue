@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navigation id='nav'/>
-    <img id='profile' alt="Brandon Bates" src="../../toBuild/profile.jpeg">
+    <img id='profile' alt="Brandon Bates" src="" />
     <p id='summary'>{{summary}}</p>
     <Projects id='list' />
     <Footer id="footer" />
@@ -12,7 +12,7 @@
 import Navigation from './components/navigation.vue'
 import Projects from './components/projects.vue'
 import Footer from './components/footer.vue'
-import summary from '../../toBuild/data.js'
+// import summary from '../../toBuild/data.js'
 
 export default {
   name: 'App',

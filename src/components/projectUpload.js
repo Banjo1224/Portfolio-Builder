@@ -5,11 +5,11 @@ function ProjectUpload(props) {
   const [file, setFile] = useState(''); // storing the uploaded file
   // storing the recived file from backend
   const [data, getFile] = useState({ name: "", path: "" });
-  const [progress, setProgess] = useState(0); // progess bar
+
   const el = useRef(); // accesing input element
 
   const handleChange = (e) => {
-    setProgess(0)
+
     const file = e.target.files[0]; // accesing file
     console.log(file);
     setFile(file); // storing file
@@ -18,13 +18,8 @@ function ProjectUpload(props) {
   const uploadFile = (e) => {
     e.preventDefault();
     const formData = new FormData(); formData.append('file', file);
-    axios.post(`http://localhost:1337/upload/project/${props.project_id}`, formData, {
-      onUploadProgress: (ProgressEvent) => {
-        let progress = Math.round(
-          ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
-        setProgess(progress);
-      }
-    }).then(res => {
+    axios.post(`http://localhost:1337/upload/project/${props.project_id}`, formData, {})
+      .then(res => {
       console.log(res);
       getFile({
         name: res.data.name,
@@ -37,8 +32,6 @@ function ProjectUpload(props) {
     <div>
       <div className="file-upload">
         <input type="file" ref={el} onChange={handleChange} />
-        <div className="progessBar" style={{ width: progress }}>
-          {progress}
         </div>
         <button onClick={uploadFile} className="upbutton">
         Upload
@@ -46,7 +39,6 @@ function ProjectUpload(props) {
         <hr />
         {/* displaying received image*/}
         {data.path && <img src={data.path} alt={data.name} />}
-      </div>
     </div>
   );
 }

@@ -1,0 +1,1 @@
+{"name":"Brandon Bates","email":"bbates377@gmail.com","resume":"lexport?format=pdf","linkedin":"a;lsdkfj","github":"al;skdfj","bg_color":null,"nav_color":null}

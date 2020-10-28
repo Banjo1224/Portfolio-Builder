@@ -2,7 +2,7 @@
 <section class="page-section" id="portfolio">
         <div class="container">
             <div class="text-center">
-              <hr>
+              <hr />
                 <h2 class="section-heading text-uppercase">Portfolio</h2>
             </div>
             <div class="row">
@@ -11,7 +11,7 @@
                         <a href="https://github.com/Team-Mohawk/reviewsAPI/blob/master/README.md" target="_blank" rel="noopener noreferrer">
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">PROJECT TITLE</div>
-                                <img class="smallEmbed" src="../assets/pics/SDC.png">
+                                <img class="smallEmbed" src="../assets/pics/SDC.png" />
                             </div>
                         </a>
 
@@ -22,7 +22,7 @@
                         <a  href="https://github.com/Team-Torchy/front-end-capstone/blob/master/README.md" target="_blank" rel="noopener noreferrer">
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">PROJECT TITLE</div>
-                                <img class="smallEmbed" src="../assets/pics/FEC.png">
+                                <img class="smallEmbed" src="../assets/pics/FEC.png" />
                             </div>
                         </a>
                     </div>
@@ -32,7 +32,7 @@
                         <a href="https://github.com/Banjo1224/toy-problems/blob/master/README.md" target="_blank" rel="noopener noreferrer">
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">PROJECT TITLE</div>
-                                <img class="smallEmbed" src="../../../../../toBuild/project3">
+                                <img class="smallEmbed" src="" />
                             </div>
                         </a>
                     </div>

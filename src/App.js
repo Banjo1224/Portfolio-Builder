@@ -21,24 +21,30 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const file = {
-      "name": this.state.name,
-      "email": this.state.email,
-      "resume": this.state.resume,
-      "linkedin": this.state.linkedin,
-      "github": this.state.github,
-      "description": this.state.description
-    };
-    axios.post('http://localhost:1337/upload/portfolio', file)
+  handleSubmit() {
+    const data = {
+      'name': this.state.name,
+      'email': this.state.email,
+      'resume': this.state.resume,
+      'linkedin': this.state.linkedin,
+      'github': this.state.description,
+      'bg_color': this.state.bg_color,
+      'nav_color': this.state.nav_color
+    }
+    console.log(data);
+
+    // const formData = new FormData(); formData.append('file', this.state);
+    axios({
+      method: 'post',
+      url: 'http://localhost:1337/portfolio',
+      data: data})
       .then(res => {
         console.log(res);
       }).catch(err => console.log(err))
   }
 
   handleProfile(name, email, resume, linkedin, github, description) {
-    resume = resume.slice('').reverse().indexOf('/')
+    resume = resume.slice(0, -resume.split('').reverse().join('').indexOf('/')) + 'export?format=pdf';
     this.setState({
       name,
       email,
@@ -46,7 +52,9 @@ class App extends React.Component {
       linkedin,
       github,
       description
-    })
+    }, () => {
+      console.log(this.state)
+    });
   }
 
   handlePageProps(pageColor, navColor) {
@@ -65,12 +73,12 @@ class App extends React.Component {
           <h1>Portfolio Builder - Software Engineering</h1>
           <p id='description'>Welcome to the Software Engineering Portfolio Generator. Use this page to create a simple Vue.JS portfolio page ready to deploy!</p>
         </header>
-          <Profile />
+          <Profile handleProfile={this.handleProfile.bind(this)}/>
           <Projects />
           <Page handleProps={this.handlePageProps.bind(this)} />
-          <button onClick={e => {
+          <button onClick={(e) => {
             e.preventDefault();
-            this.handleSubmit(e)
+            this.handleSubmit();
           }}>Submit Portfolio</button>
       </div>
     );

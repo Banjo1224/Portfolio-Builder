@@ -1,13 +1,18 @@
-const axios = require('axios');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
-const path = require('path');
+const parser = require('body-parser');
+const fs = require('fs');
+const { exec } = require("child_process");
+var AdmZip = require('adm-zip');
 
+const zip = new AdmZip();
 const app = express();
 
 app.use(cors());
 app.use(fileUpload());
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
 
 app.use(express.static('../build'));
 
@@ -41,17 +46,39 @@ app.post('/upload/project/:id', (req, res) => {
   })
 });
 
-app.post('/upload/portfolio', (req, res) => {
-  if (!req.files) {
-    return res.status(500).send({ msg: 'no file attached!' });
-  }
-  const file = req.files.file;
-  file.mv(`${__dirname}/toBuild/data.js`, function (err) {
+app.post('/portfolio', (req, res) => {
+  fs.writeFile('./server/toBuild/data.txt', JSON.stringify(req.body), (err, data) => {
     if (err) {
-      console.log(err)
-      return res.status(500).send({ msg: "Error occured" });
+      console.log(err);
+      res.status(500).send();
+    } else {
+      Promise.resolve(exec("npm run build-template", { "cwd": `${__dirname}`, "shell": "/bin/bash" }, (error, stdout, stderr) => {
+        if (error) {
+          console.log(`error: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          return;
+        }
+        console.log(`stdout: ${stdout}`);
+      }))
+      .then(() => {
+        Promise.resolve(exec("zip -r portfolio.zip ../dist/", {"cwd": `${__dirname}`, "shell": "/bin/bash" }, (err, stdout, stderr) => {
+          if (err) {
+            console.log(`error: ${err.message}`);
+            return;
+          }
+          if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+          }
+          console.log(`stdout: ${stdout}`);
+        }))
+      })
+      .catch(err => console.log(err));
+      res.status(201).send('success');
     }
-    return res.send({ name: file.name, path: `/${file.name}` });
   })
 })
 

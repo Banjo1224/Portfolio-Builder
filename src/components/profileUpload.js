@@ -3,11 +3,11 @@ import axios from 'axios';
 
 function ProfileUpload() {
   const [file, setFile] = useState(''); // storing the uploaded file    // storing the recived file from backend
-  const [data, getFile] = useState({ name: "", path: "" }); const [progress, setProgess] = useState(0); // progess bar
+  const [data, getFile] = useState({ name: "", path: "" });
   const el = useRef(); // accesing input element
 
   const handleChange = (e) => {
-    setProgess(0)
+
     const file = e.target.files[0]; // accesing file
     console.log(file);
     setFile(file); // storing file
@@ -17,11 +17,6 @@ function ProfileUpload() {
     e.preventDefault();
     const formData = new FormData(); formData.append('file', file);
     axios.post('http://localhost:1337/upload/profile', formData, {
-      onUploadProgress: (ProgressEvent) => {
-        let progress = Math.round(
-          ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
-        setProgess(progress);
-      }
     }).then(res => {
       console.log(res);
       getFile({
@@ -35,9 +30,6 @@ function ProfileUpload() {
     <div>
       <div className="file-upload">
         <input type="file" ref={el} onChange={handleChange} />
-        <div className="progessBar" style={{ width: progress }}>
-          {progress}
-        </div>
         <button onClick={uploadFile} className="upbutton">
         Upload
         </button>

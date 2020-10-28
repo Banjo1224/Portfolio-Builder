@@ -7,11 +7,19 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@vue/cli": "^4.5.8",
+    "@vue/cli-service-global": "^4.5.8",
+    "adm-zip": "^0.4.16",
     "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "child-process": "^1.0.2",
     "cors": "^2.8.5",
+    "eslint-config-vue": "^2.0.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
+    "express-zip": "^3.0.0",
     "nodemon": "^2.0.6",
+    "npm": "^6.14.8",
     "path": "^0.12.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -23,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-template": "vue build ./server/template/src/App.vue"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +51,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-plugin-vue": "^7.1.0"
   }
 }
