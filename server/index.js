@@ -3,9 +3,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const parser = require('body-parser');
 const fs = require('fs');
-const execSync = require('child_process').execSync
-
-const archiver = require('archiver');
+const execSync = require('child_process').execSync;
 
 const app = express();
 
