@@ -13,21 +13,21 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Brandon Bates</a>
+      <a class="navbar-brand" href="#">{{DATA.name}}</a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
             <a
               class="nav-link"
-              href="https://docs.google.com/document/d/10c2Y7JIWR5EZBroxV1L9XZBzTxLPKAQyexH9d02k_8s/export?format=pdf"
-              >Download Resume</a
+              v-bind:href="DATA.resume"
+              >Resume</a
             >
           </li>
           <li class="nav-item">
             <a
               class="nav-link"
               target="_blank"
-              href="https://www.linkedin.com/in/brandon-bates-178a86165/"
+              v-bind:href="DATA.linkedin"
               >LinkedIn</a
             >
           </li>
@@ -35,7 +35,7 @@
             <a
               class="nav-link"
               target="_blank"
-              href="https://www.github.com/Banjo1224"
+              v-bind:href="DATA.github"
               >Github</a
             >
           </li>
@@ -43,7 +43,7 @@
             <a
               class="nav-link"
               target="_blank"
-              href="mailto:bbates377@gmail.com"
+              v-bind:href="DATA.email"
               >Email</a
             >
           </li>
@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import DATA from '../../../toBuild/data.json';
+
 export default {
   name: "Navigation",
   props: {},

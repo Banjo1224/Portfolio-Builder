@@ -2,7 +2,7 @@
   <div id="app">
     <Navigation id='nav'/>
     <!-- <img id='profile' alt="Brandon Bates" src="./assets/profile.jpeg"> -->
-    <p id='summary'>Full Stack Developer specializing in Javascript and adept at both front- and back-end implementation and deployment. Actively searches for elegant, efficient methods for solving problems at hand. Exhibits leadership, confidence in ability, and proficiency in work. Willing and eager to learn new technologies, existing frameworks, and improving thereupon.</p>
+    <p id='summary'>{{DATA.description}}</p>
     <Projects id='list' />
     <Footer id="footer" />
   </div>
@@ -12,6 +12,7 @@
 import Navigation from './components/navigation.vue'
 import Projects from './components/projects.vue'
 import Footer from './components/footer.vue'
+import DATA from '../../toBuild/data.json';
 
 export default {
   name: 'App',
@@ -28,7 +29,7 @@ a, a:visited, a:hover {
   color: black;
 }
 #nav {
-  background-color: #3d85c6;
+  background-color: "DATA.nav_color";
   color: inherit;
 }
 #app {
@@ -37,7 +38,7 @@ a, a:visited, a:hover {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding-bottom: 10px;
-  background-color: #cfe0fc;
+  background-color: "DATA.bg_color";
 }
 #summary {
   margin: 50px;
@@ -47,7 +48,7 @@ a, a:visited, a:hover {
   width: auto;
   border-radius: 100%;
   border: 3px solid blanchedalmond;
-  background-color: #3d85c6;
+  background-color: "DATA.nav_color";
   margin-top: 10px;
 }
 </style>
