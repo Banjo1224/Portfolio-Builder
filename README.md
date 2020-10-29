@@ -1,16 +1,16 @@
-## Portfolio Builder ##
+# Portfolio Builder #
 by Brandon Bates, Oct. 2020
 
-# Description #
+## Description ##
 A form that allows a user to input simple, raw data and pictures, upload them to a file on the server to build into a template, and build a VueJS Portfolio using those pictures and data points. The end result is a zipped file containing the distribution-ready format of the webpage.
 
-# Technologies Used #
+## Technologies Used ##
 * React
 * Vue
 * Node
 * Axios
 
-# Dependencies #
+## Dependencies ##
 
 * "@material-ui/core": "^4.11.0",
 * "@vue/cli": "^4.5.8",
@@ -34,7 +34,7 @@ A form that allows a user to input simple, raw data and pictures, upload them to
 * "simple-archiver": "^1.0.1",
 * "web-vitals": "^0.2.4"
 
-# Directions to run #
+## Directions to run ##
 
 > from `PortfolioBuilder` directory, run `node ./server`
 
