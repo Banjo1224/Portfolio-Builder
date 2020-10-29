@@ -27,7 +27,8 @@ class App extends React.Component {
       'email': this.state.email,
       'resume': this.state.resume,
       'linkedin': this.state.linkedin,
-      'github': this.state.description,
+      'github': this.state.github,
+      'description': this.state.description,
       'bg_color': this.state.bg_color,
       'nav_color': this.state.nav_color
     }

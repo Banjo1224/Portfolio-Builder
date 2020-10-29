@@ -1,1 +1,0 @@
-{"name":null,"email":null,"resume":null,"linkedin":null,"github":null,"bg_color":null,"nav_color":null}

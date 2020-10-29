@@ -45,7 +45,7 @@ app.post('/upload/project/:id', (req, res) => {
 });
 
 app.post('/portfolio', (req, res) => {
-  fs.writeFile('./server/toBuild/data.txt', JSON.stringify(req.body), (err, data) => {
+  fs.writeFile('./server/toBuild/data.json', JSON.stringify(req.body), (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send();

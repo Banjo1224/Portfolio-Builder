@@ -10,6 +10,7 @@
 
 # production
 /dist
+server/toBuild
 
 # misc
 .DS_Store
