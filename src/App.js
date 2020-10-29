@@ -92,6 +92,7 @@ render() {
       <Profile handleProfile={this.handleProfile.bind(this)} />
       <Projects />
       <Page handleProps={this.handlePageProps.bind(this)} />
+      <hr />
       <button onClick={(e) => {
         e.preventDefault();
         this.handleSubmit();
