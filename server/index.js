@@ -3,10 +3,10 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const parser = require('body-parser');
 const fs = require('fs');
-const { exec } = require("child_process");
-var AdmZip = require('adm-zip');
+const execSync = require('child_process').execSync
 
-const zip = new AdmZip();
+const archiver = require('archiver');
+
 const app = express();
 
 app.use(cors());
@@ -52,35 +52,34 @@ app.post('/portfolio', (req, res) => {
       console.log(err);
       res.status(500).send();
     } else {
-      Promise.resolve(exec("npm run build-template", { "cwd": `${__dirname}`, "shell": "/bin/bash" }, (error, stdout, stderr) => {
-        if (error) {
-          console.log(`error: ${error.message}`);
-          return;
-        }
-        if (stderr) {
-          console.log(`stderr: ${stderr}`);
-          return;
-        }
-        console.log(`stdout: ${stdout}`);
-      }))
-      .then(() => {
-        Promise.resolve(exec("zip -r portfolio.zip ../dist/", {"cwd": `${__dirname}`, "shell": "/bin/bash" }, (err, stdout, stderr) => {
-          if (err) {
-            console.log(`error: ${err.message}`);
-            return;
-          }
-          if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-          }
-          console.log(`stdout: ${stdout}`);
-        }))
-      })
-      .catch(err => console.log(err));
       res.status(201).send('success');
     }
   })
 })
+
+app.get('/portfolio/run-1', (req, res) => {
+  console.log('1');
+  execSync("npm run build-template", { "cwd": `${__dirname}`, "shell": "/bin/bash" }, (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`);
+      return res.status(500).send();
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`);
+    }
+    console.log(`stdout: ${stdout}`);
+  })
+  console.log('2');
+  res.send('success');
+});
+
+app.get('/portfolio/run-2', (req, res) => {
+  console.log('zipping!')
+  execSync(`zip -r portfolio.zip ./dist/`, {
+    'shell': "/bin/bash"
+  });
+  res.download('./portfolio.zip');
+});
 
 app.listen(1337, () => {
   console.log('server listening on port 1337')

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Navigation id='nav'/>
-    <img id='profile' alt="Brandon Bates" src="" />
-    <p id='summary'>{{summary}}</p>
+    <!-- <img id='profile' alt="Brandon Bates" src="./assets/profile.jpeg"> -->
+    <p id='summary'>Full Stack Developer specializing in Javascript and adept at both front- and back-end implementation and deployment. Actively searches for elegant, efficient methods for solving problems at hand. Exhibits leadership, confidence in ability, and proficiency in work. Willing and eager to learn new technologies, existing frameworks, and improving thereupon.</p>
     <Projects id='list' />
     <Footer id="footer" />
   </div>
@@ -12,7 +12,6 @@
 import Navigation from './components/navigation.vue'
 import Projects from './components/projects.vue'
 import Footer from './components/footer.vue'
-// import summary from '../../toBuild/data.js'
 
 export default {
   name: 'App',
